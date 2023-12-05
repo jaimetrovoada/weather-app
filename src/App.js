@@ -9,7 +9,7 @@ function App() {
 
   // OpenWeatherMap APi
   // get location test
-  const apiKey = "cdf99154d54a9aa87cc06d687005ad20";
+  const apiKey = process.env.REACT_APP_API_KEY;
   const getWeather = () => {
     navigator.geolocation.getCurrentPosition(success, fail);
 
@@ -17,9 +17,9 @@ function App() {
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
       const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat.toFixed(
-        2
+        2,
       )}&lon=${lon.toFixed(
-        2
+        2,
       )}&appid=${apiKey}&units=metric&exclude=minutely,hourly,alerts`;
 
       console.log(`lat ${lat}// lon ${lon}// url ${url}`);
@@ -35,7 +35,7 @@ function App() {
   };
   useEffect(() => {
     getWeather();
-  }, []);
+  });
 
   const [displayTmr, setDisplayTmr] = useState(false);
 
